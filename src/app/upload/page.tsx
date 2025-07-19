@@ -34,6 +34,7 @@ export default function UploadPage() {
       }
     } catch (error) {
       setMessage('❌ Upload failed');
+      console.error(error);
     } finally {
       setUploading(false);
     }

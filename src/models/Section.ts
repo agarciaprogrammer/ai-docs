@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '@/lib/db';
-import Document from './Document';
 
 class Section extends Model {
   declare id: string;

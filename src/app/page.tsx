@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-indigo-100">
@@ -13,18 +15,18 @@ export default function HomePage() {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/upload"
               className="bg-green-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition"
             >
               Get Started → Upload PDF
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#features"
               className="bg-white text-green-600 px-8 py-3 rounded-lg text-lg font-semibold border-2 border-green-600 hover:bg-gree-50 transition"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

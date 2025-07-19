@@ -4,7 +4,7 @@ import Section from '@/models/Section';
 import DocumentViewer from './DocumentViewer';
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function DocumentPage({ params }: Props) {
