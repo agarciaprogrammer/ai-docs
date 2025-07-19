@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { askGemini } from '@/lib/gemini';
+import { isDatabaseAvailable } from '@/lib/db';
 import Section from '@/models/Section';
 
 export async function POST(req: NextRequest) {
   try {
+    if (!isDatabaseAvailable()) {
+      return NextResponse.json({ error: 'Database not available' }, { status: 503 });
+    }
+
     const { question, sectionId } = await req.json();
 
     // 1. fetch the section content

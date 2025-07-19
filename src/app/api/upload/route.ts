@@ -2,11 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import pdf from 'pdf-parse';
 import { v4 as uuidv4 } from 'uuid';
 import sequelize from '@/lib/db';
+import { isDatabaseAvailable } from '@/lib/db';
 import Document from '@/models/Document';
 import Section from '@/models/Section';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isDatabaseAvailable()) {
+      return NextResponse.json({ error: 'Database not available' }, { status: 503 });
+    }
+
     // Initialize database
     await sequelize.authenticate();
     await sequelize.sync();

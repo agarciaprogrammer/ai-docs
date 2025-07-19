@@ -23,8 +23,13 @@ Document.init(
   { sequelize, modelName: 'Document', tableName: 'Documents', timestamps: true }
 );
 
-// Define associations
-Document.hasMany(Section, { foreignKey: 'documentId', as: 'sections' });
-Section.belongsTo(Document, { foreignKey: 'documentId' });
+// Define associations only if sequelize is available
+try {
+  Document.hasMany(Section, { foreignKey: 'documentId', as: 'sections' });
+  Section.belongsTo(Document, { foreignKey: 'documentId' });
+} catch (error) {
+  // Silently fail if database is not available (e.g., during build)
+  console.warn('Database associations could not be established:', error);
+}
 
 export default Document;
